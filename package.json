@@ -1,0 +1,30 @@
+{
+  "name": "dbc-node-opensearch-client",
+  "version": "0.0.1",
+  "description": "Client for DBC webservice OpenSearch",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel/register",
+    "build": "npm run cleardest && babel ./src -d dist",
+    "cleardest": "rm -rf ./dist",
+    "watch": "npm run cleardest && babel ./src --watch -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DBCDK/dbc-node-opensearch-client"
+  },
+  "keywords": [
+    "dbc"
+  ],
+  "author": "DBC A/S",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DBCDK/dbc-node-opensearch-client/issues"
+  },
+  "homepage": "https://github.com/DBCDK/dbc-node-opensearch-client#readme",
+  "devDependencies": {
+    "babel": "^5.5.6",
+    "chai": "^2.3.0",
+    "mocha": "^2.2.4"
+  }
+}
