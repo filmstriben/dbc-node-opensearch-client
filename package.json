@@ -24,7 +24,11 @@
   "homepage": "https://github.com/DBCDK/dbc-node-opensearch-client#readme",
   "devDependencies": {
     "babel": "^5.5.6",
+    "cache-manager": "^0.18.0",
     "chai": "^2.3.0",
     "mocha": "^2.2.4"
+  },
+  "dependencies": {
+    "dbc-node-basesoap-client": "git+https://github.com/DBCDK/dbc-node-basesoap-client#develop"
   }
 }

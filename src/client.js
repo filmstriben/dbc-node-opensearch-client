@@ -1,6 +1,6 @@
 'use strict';
 
-import * as BaseSoapClient from "../../dbc-node-basesoap-client/src/basesoap.client.js";
+import * as BaseSoapClient from "dbc-node-basesoap-client";
 
 let wsdl = null;
 let defaults = {};
