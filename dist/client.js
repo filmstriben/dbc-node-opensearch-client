@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.init = init;
 exports.getSearchResult = getSearchResult;
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj["default"] = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
-var _basesoapClientJs = require("./basesoap.client.js");
+var _dbcNodeBasesoapClient = require('dbc-node-basesoap-client');
 
-var BaseSoapClient = _interopRequireWildcard(_basesoapClientJs);
+var BaseSoapClient = _interopRequireWildcard(_dbcNodeBasesoapClient);
 
 var wsdl = null;
 var defaults = {};
@@ -23,14 +23,8 @@ var defaults = {};
  */
 
 function sendSearchRequest(params) {
-  console.log("sendSearchRequest: ");
-  console.log(params);
-  return new Promise(function (resolve, reject) {
-    var opensearch = BaseSoapClient.client(wsdl, defaults, "");
-    opensearch.request("search", params, function (data, response) {
-      resolve(data);
-    });
-  });
+  var opensearch = BaseSoapClient.client(wsdl, defaults, '');
+  return opensearch.request('searchOperation', params, null, true);
 }
 
 /**
@@ -49,8 +43,7 @@ function init(config) {
   defaults = {
     agency: config.agency,
     profile: config.profile,
-    objectFormat: config.objectFormat,
-    outputType: config.outputType
+    objectFormat: config.objectFormat
   };
 }
 
@@ -67,8 +60,6 @@ function getSearchResult() {
   var query = arguments[0] === undefined ? [] : arguments[0];
 
   var requests = [];
-  console.log("getSearchResult: ");
-  console.log(query);
   query.forEach(function (value) {
     var params = {
       query: value.query,
@@ -79,9 +70,6 @@ function getSearchResult() {
     };
     requests.push(sendSearchRequest(params));
   });
-
-  console.log("getSearchResult result: ");
-  console.log(requests);
 
   return requests;
 }

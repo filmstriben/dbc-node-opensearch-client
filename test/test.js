@@ -2,6 +2,7 @@
 
 import {expect, assert} from 'chai';
 import * as OpenSearch from  '../src/client.js';
+import * as prep from  '../src/response-preparation.js';
 
 describe('Test Open Search List Display', () => {
 	it('Assert list display', function(done) {
@@ -16,7 +17,7 @@ describe('Test Open Search List Display', () => {
 		
 		OpenSearch.init(config);
 		let result = OpenSearch.getSearchResult([{
-			query: "'harry potter'", 
+			query: "rec.id=870970-basis:2225285", 
 			start: "1", 
 			stepValue: "10", 
 			sort: 'rank_frequency', 

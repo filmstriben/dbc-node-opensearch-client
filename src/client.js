@@ -1,6 +1,6 @@
 'use strict';
 
-import * as BaseSoapClient from "dbc-node-basesoap-client";
+import * as BaseSoapClient from 'dbc-node-basesoap-client';
 
 let wsdl = null;
 let defaults = {};
@@ -11,10 +11,10 @@ let defaults = {};
  * @param {Object} params Parameters for the request
  * @return {Promise}
  */
- 
+
 function sendSearchRequest(params) {
   let opensearch = BaseSoapClient.client(wsdl, defaults, '');
-  return opensearch.request("searchOperation", params, null, true);
+  return opensearch.request('searchOperation', params, null, true);
 }
 
 /**
@@ -30,10 +30,10 @@ export function init(config) {
     wsdl = config.wsdl;
   }
   defaults = {
-	agency: config.agency,
-	profile: config.profile,
-	objectFormat: config.objectFormat,
-  };	  	
+		agency: config.agency,
+		profile: config.profile,
+		objectFormat: config.objectFormat
+  };
 }
 
 /**
