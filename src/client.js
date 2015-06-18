@@ -59,3 +59,7 @@ export function getSearchResult(query = []) {
 
   return requests;
 }
+
+export const METHODS = {
+  getSearchResult: getSearchResult
+};

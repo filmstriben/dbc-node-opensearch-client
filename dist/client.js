@@ -73,3 +73,8 @@ function getSearchResult() {
 
   return requests;
 }
+
+var METHODS = {
+  getSearchResult: getSearchResult
+};
+exports.METHODS = METHODS;
