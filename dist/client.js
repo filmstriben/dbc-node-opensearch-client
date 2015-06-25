@@ -5,6 +5,7 @@ Object.defineProperty(exports, '__esModule', {
 });
 exports.init = init;
 exports.getSearchResult = getSearchResult;
+exports.getWorkResult = getWorkResult;
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
@@ -42,8 +43,7 @@ function init(config) {
   }
   defaults = {
     agency: config.agency,
-    profile: config.profile,
-    objectFormat: config.objectFormat
+    profile: config.profile
   };
 }
 
@@ -66,7 +66,24 @@ function getSearchResult() {
       start: value.start,
       stepValue: value.stepValue,
       sort: value.sort,
-      allObjects: value.allObjects
+      objectFormat: 'briefDisplay'
+    };
+    requests.push(sendSearchRequest(params));
+  });
+
+  return requests;
+}
+
+function getWorkResult() {
+  var query = arguments[0] === undefined ? [] : arguments[0];
+
+  var requests = [];
+  query.forEach(function (value) {
+    var params = {
+      query: value.query,
+      start: 1,
+      stepValue: 1,
+      allObjects: true
     };
     requests.push(sendSearchRequest(params));
   });
@@ -75,6 +92,7 @@ function getSearchResult() {
 }
 
 var METHODS = {
-  getSearchResult: getSearchResult
+  getSearchResult: getSearchResult,
+  getWorkResult: getWorkResult
 };
 exports.METHODS = METHODS;

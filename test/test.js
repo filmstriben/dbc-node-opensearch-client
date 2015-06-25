@@ -2,7 +2,6 @@
 
 import {expect, assert} from 'chai';
 import * as OpenSearch from  '../src/client.js';
-import * as prep from  '../src/response-preparation.js';
 
 describe('Test Open Search List Display', () => {
 	it('Assert list display', function(done) {
@@ -11,17 +10,15 @@ describe('Test Open Search List Display', () => {
 		const config = {
 			wsdl: "http://opensearch.addi.dk/3.2/opensearch.wsdl",
 			agency: "150013",
-			profile: "opac",
-			objectFormat: "briefDisplay",
+			profile: "opac"
 		}
 		
 		OpenSearch.init(config);
 		let result = OpenSearch.getSearchResult([{
-			query: "rec.id=870970-basis:2225285", 
+			query: "'harry potter'", 
 			start: "1", 
 			stepValue: "10", 
 			sort: 'rank_frequency', 
-			allObjects: 'false'
 		}]);
 		
 		result[0].then(function (searchResult) {
@@ -41,22 +38,18 @@ describe('Test Open Search Work Display', () => {
 			wsdl: "http://opensearch.addi.dk/3.2/opensearch.wsdl",
 			agency: "150013",
 			profile: "opac",
-			objectFormat: "briefDisplay",
 		}
 		
 		OpenSearch.init(config);
-		let result = OpenSearch.getSearchResult([{
-			query: "rec.id=870970-basis:22629344", 
-			start: "1", 
-			stepValue: "1", 
-			sort: 'date_descending', 
-			allObjects: 'true'
+		let result = OpenSearch.getWorkResult([{
+			query: "rec.id=870970-basis:25245784", 
+			sort: 'date_descending'
 		}]);
 		
 		result[0].then(function (searchResult) {
 			assert.equal(searchResult.result.collectionCount, "1", "collectionCount is 1");
 			assert.equal(searchResult.result.more, "false", "there is not more");
-			assert.isAbove(searchResult.result.searchResult.collection.numberOfObjects, 5, "work contains more than 5 manifestations");
+			assert.isAbove(searchResult.result.searchResult.collection.numberOfObjects, 3, "work contains more than 3 manifestations");
 			done();
 		});
 	});

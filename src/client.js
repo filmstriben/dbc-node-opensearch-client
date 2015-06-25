@@ -31,8 +31,7 @@ export function init(config) {
   }
   defaults = {
 		agency: config.agency,
-		profile: config.profile,
-		objectFormat: config.objectFormat
+		profile: config.profile
   };
 }
 
@@ -52,7 +51,22 @@ export function getSearchResult(query = []) {
       start: value.start,
       stepValue: value.stepValue,
       sort: value.sort,
-      allObjects: value.allObjects
+      objectFormat: 'briefDisplay'
+    };
+    requests.push(sendSearchRequest(params));
+  });
+
+  return requests;
+}
+
+export function getWorkResult(query = []) {
+  let requests = [];
+  query.forEach((value) => {
+    const params = {
+      query: value.query,
+      start: 1,
+      stepValue: 1,
+      allObjects: true
     };
     requests.push(sendSearchRequest(params));
   });
@@ -61,5 +75,6 @@ export function getSearchResult(query = []) {
 }
 
 export const METHODS = {
-  getSearchResult: getSearchResult
+  getSearchResult: getSearchResult,
+  getWorkResult: getWorkResult
 };
