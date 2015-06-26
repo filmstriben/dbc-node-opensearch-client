@@ -66,7 +66,8 @@ export function getWorkResult(query = []) {
       query: value.query,
       start: 1,
       stepValue: 1,
-      allObjects: true
+      allObjects: true,
+      objectFormat: 'dkabm'
     };
     requests.push(sendSearchRequest(params));
   });
