@@ -71,7 +71,7 @@ export function getWorkResult(query = []) {
     };
     requests.push(sendSearchRequest(params));
   });
-  
+
   return requests;
 }
 
