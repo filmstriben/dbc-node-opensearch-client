@@ -67,11 +67,11 @@ export function getWorkResult(query = []) {
       start: 1,
       stepValue: 1,
       allObjects: true,
-      objectFormat: 'dkabm'
+      objectFormat: ['dkabm', 'briefDisplay']
     };
     requests.push(sendSearchRequest(params));
   });
-
+  
   return requests;
 }
 
