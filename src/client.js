@@ -18,6 +18,41 @@ function sendSearchRequest(params) {
 }
 
 /**
+ * Constructs the objects of parameters for this type of request.
+ * As the query is expected to be an array it is possible to make multiple
+ * requests at once, each returned as a Promise.
+ *
+ * @param {Array} query Array of parameter-objects each representing a request
+ * @return {Array} An array of promises is returned
+ */
+export function getSearchResult(value) {
+  const params = {
+    query: value.query,
+    start: value.start,
+    stepValue: value.stepValue,
+    sort: value.sort,
+    objectFormat: 'briefDisplay'
+  };
+  return sendSearchRequest(params);
+}
+
+export function getWorkResult(value) {
+  const params = {
+    query: value.query,
+    start: 1,
+    stepValue: 1,
+    allObjects: true,
+    objectFormat: ['dkabm', 'briefDisplay']
+  };
+  return sendSearchRequest(params)
+}
+
+export const METHODS = {
+  getSearchResult: getSearchResult,
+  getWorkResult: getWorkResult
+};
+
+/**
  * Setting the necessary paramerters for the client to be usable.
  * The endpoint is only set if endpoint is null to allow setting it through
  * environment variables.
@@ -30,52 +65,9 @@ export function init(config) {
     wsdl = config.wsdl;
   }
   defaults = {
-		agency: config.agency,
-		profile: config.profile
+    agency: config.agency,
+    profile: config.profile
   };
+
+  return METHODS;
 }
-
-/**
- * Constructs the objects of parameters for this type of request.
- * As the query is expected to be an array it is possible to make multiple
- * requests at once, each returned as a Promise.
- *
- * @param {Array} query Array of parameter-objects each representing a request
- * @return {Array} An array of promises is returned
- */
-export function getSearchResult(query = []) {
-  let requests = [];
-  query.forEach((value) => {
-    const params = {
-      query: value.query,
-      start: value.start,
-      stepValue: value.stepValue,
-      sort: value.sort,
-      objectFormat: 'briefDisplay'
-    };
-    requests.push(sendSearchRequest(params));
-  });
-
-  return requests;
-}
-
-export function getWorkResult(query = []) {
-  let requests = [];
-  query.forEach((value) => {
-    const params = {
-      query: value.query,
-      start: 1,
-      stepValue: 1,
-      allObjects: true,
-      objectFormat: ['dkabm', 'briefDisplay']
-    };
-    requests.push(sendSearchRequest(params));
-  });
-
-  return requests;
-}
-
-export const METHODS = {
-  getSearchResult: getSearchResult,
-  getWorkResult: getWorkResult
-};

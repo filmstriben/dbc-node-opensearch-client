@@ -3,9 +3,9 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-exports.init = init;
 exports.getSearchResult = getSearchResult;
 exports.getWorkResult = getWorkResult;
+exports.init = init;
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
@@ -29,6 +29,43 @@ function sendSearchRequest(params) {
 }
 
 /**
+ * Constructs the objects of parameters for this type of request.
+ * As the query is expected to be an array it is possible to make multiple
+ * requests at once, each returned as a Promise.
+ *
+ * @param {Array} query Array of parameter-objects each representing a request
+ * @return {Array} An array of promises is returned
+ */
+
+function getSearchResult(value) {
+  var params = {
+    query: value.query,
+    start: value.start,
+    stepValue: value.stepValue,
+    sort: value.sort,
+    objectFormat: 'briefDisplay'
+  };
+  return sendSearchRequest(params);
+}
+
+function getWorkResult(value) {
+  var params = {
+    query: value.query,
+    start: 1,
+    stepValue: 1,
+    allObjects: true,
+    objectFormat: ['dkabm', 'briefDisplay']
+  };
+  return sendSearchRequest(params);
+}
+
+var METHODS = {
+  getSearchResult: getSearchResult,
+  getWorkResult: getWorkResult
+};
+
+exports.METHODS = METHODS;
+/**
  * Setting the necessary paramerters for the client to be usable.
  * The endpoint is only set if endpoint is null to allow setting it through
  * environment variables.
@@ -45,55 +82,6 @@ function init(config) {
     agency: config.agency,
     profile: config.profile
   };
+
+  return METHODS;
 }
-
-/**
- * Constructs the objects of parameters for this type of request.
- * As the query is expected to be an array it is possible to make multiple
- * requests at once, each returned as a Promise.
- *
- * @param {Array} query Array of parameter-objects each representing a request
- * @return {Array} An array of promises is returned
- */
-
-function getSearchResult() {
-  var query = arguments[0] === undefined ? [] : arguments[0];
-
-  var requests = [];
-  query.forEach(function (value) {
-    var params = {
-      query: value.query,
-      start: value.start,
-      stepValue: value.stepValue,
-      sort: value.sort,
-      objectFormat: 'briefDisplay'
-    };
-    requests.push(sendSearchRequest(params));
-  });
-
-  return requests;
-}
-
-function getWorkResult() {
-  var query = arguments[0] === undefined ? [] : arguments[0];
-
-  var requests = [];
-  query.forEach(function (value) {
-    var params = {
-      query: value.query,
-      start: 1,
-      stepValue: 1,
-      allObjects: true,
-      objectFormat: ['dkabm', 'briefDisplay']
-    };
-    requests.push(sendSearchRequest(params));
-  });
-
-  return requests;
-}
-
-var METHODS = {
-  getSearchResult: getSearchResult,
-  getWorkResult: getWorkResult
-};
-exports.METHODS = METHODS;
