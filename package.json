@@ -4,10 +4,11 @@
   "description": "Client for DBC webservice OpenSearch",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel/register",
+    "test": "mocha --compilers js:babel/register -R mocha-jenkins-reporter",
     "build": "npm run cleardest && babel ./src -d dist",
     "cleardest": "rm -rf ./dist",
     "lint": "eslint ./src",
+    "lint:checkstyle": "eslint ./src  -o report.xml -f checkstyle",
     "watch": "npm run cleardest && babel ./src --watch -d dist"
   },
   "repository": {
@@ -29,7 +30,8 @@
     "cache-manager": "^0.18.0",
     "chai": "^2.3.0",
     "eslint": "^0.21.0",
-    "mocha": "^2.2.4"
+    "mocha": "^2.2.4",
+    "mocha-jenkins-reporter": "^0.1.9"
   },
   "dependencies": {
     "dbc-node-basesoap-client": "git+https://github.com/DBCDK/dbc-node-basesoap-client#develop"
