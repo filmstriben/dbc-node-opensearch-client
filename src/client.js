@@ -18,12 +18,10 @@ function sendSearchRequest(params) {
 }
 
 /**
- * Constructs the objects of parameters for this type of request.
- * As the query is expected to be an array it is possible to make multiple
- * requests at once, each returned as a Promise.
+ * Constructs the object of parameters for search result request.
  *
- * @param {Array} query Array of parameter-objects each representing a request
- * @return {Array} An array of promises is returned
+ * @param {Object} value Object with parameters for getting a search result
+ * @return {Promise}
  */
 export function getSearchResult(value) {
   const params = {
@@ -36,6 +34,12 @@ export function getSearchResult(value) {
   return sendSearchRequest(params);
 }
 
+/**
+ * Constructs the object of parameters for work request.
+ *
+ * @param {Object} value Object with parameters for getting a work
+ * @return {Promise}
+ */
 export function getWorkResult(value) {
   const params = {
     query: value.query,
@@ -44,7 +48,7 @@ export function getWorkResult(value) {
     allObjects: true,
     objectFormat: ['dkabm', 'briefDisplay']
   };
-  return sendSearchRequest(params)
+  return sendSearchRequest(params);
 }
 
 export const METHODS = {
@@ -54,7 +58,7 @@ export const METHODS = {
 
 /**
  * Setting the necessary paramerters for the client to be usable.
- * The endpoint is only set if endpoint is null to allow setting it through
+ * The wsdl is only set if wsdl is null to allow setting it through
  * environment variables.
  *
  * @param {Object} config Config object with the necessary parameters to use
