@@ -23,12 +23,12 @@ function sendSearchRequest(params) {
  * @param {Object} value Object with parameters for getting a search result
  * @return {Promise}
  */
-export function getSearchResult(value) {
+export function getSearchResult(values) {
   const params = {
-    query: value.query,
-    start: value.start,
-    stepValue: value.stepValue,
-    sort: value.sort,
+    query: values.query,
+    start: values.start,
+    stepValue: values.stepValue,
+    sort: values.sort,
     objectFormat: 'briefDisplay'
   };
   return sendSearchRequest(params);
@@ -40,9 +40,9 @@ export function getSearchResult(value) {
  * @param {Object} value Object with parameters for getting a work
  * @return {Promise}
  */
-export function getWorkResult(value) {
+export function getWorkResult(values) {
   const params = {
-    query: value.query,
+    query: values.query,
     start: 1,
     stepValue: 1,
     allObjects: true,

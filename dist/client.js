@@ -29,28 +29,33 @@ function sendSearchRequest(params) {
 }
 
 /**
- * Constructs the objects of parameters for this type of request.
- * As the query is expected to be an array it is possible to make multiple
- * requests at once, each returned as a Promise.
+ * Constructs the object of parameters for search result request.
  *
- * @param {Array} query Array of parameter-objects each representing a request
- * @return {Array} An array of promises is returned
+ * @param {Object} value Object with parameters for getting a search result
+ * @return {Promise}
  */
 
-function getSearchResult(value) {
+function getSearchResult(values) {
   var params = {
-    query: value.query,
-    start: value.start,
-    stepValue: value.stepValue,
-    sort: value.sort,
+    query: values.query,
+    start: values.start,
+    stepValue: values.stepValue,
+    sort: values.sort,
     objectFormat: 'briefDisplay'
   };
   return sendSearchRequest(params);
 }
 
-function getWorkResult(value) {
+/**
+ * Constructs the object of parameters for work request.
+ *
+ * @param {Object} value Object with parameters for getting a work
+ * @return {Promise}
+ */
+
+function getWorkResult(values) {
   var params = {
-    query: value.query,
+    query: values.query,
     start: 1,
     stepValue: 1,
     allObjects: true,
@@ -64,15 +69,15 @@ var METHODS = {
   getWorkResult: getWorkResult
 };
 
-exports.METHODS = METHODS;
 /**
  * Setting the necessary paramerters for the client to be usable.
- * The endpoint is only set if endpoint is null to allow setting it through
+ * The wsdl is only set if wsdl is null to allow setting it through
  * environment variables.
  *
  * @param {Object} config Config object with the necessary parameters to use
  * the webservice
  */
+exports.METHODS = METHODS;
 
 function init(config) {
   if (!wsdl) {

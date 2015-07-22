@@ -3,7 +3,7 @@
 Node client for the DBC OpenSearch webservice https://opensource.dbc.dk/services/open-search-web-service.
 Implements the searchOperation of the webservice for retrieving either a search result list or a work.
 
-## OpenSearch.getSearchResult(value):Promise
+## OpenSearch.getSearchResult(values):Promise
 Method for creating a search request with a query and a set of user provided and/or application specific
 parameters.
 This method returns a search result from the OpenSearch webservice as work collections, containing as many
@@ -23,7 +23,7 @@ OpenSearch.getSearchResult(params);
 
 ```
 
-## OpenSearch.getWorkResult(value):Promise
+## OpenSearch.getWorkResult(values):Promise
 Method for creating a search request for a specific work given a specific identifier as a query. 
 The method returns the first result from the OpenSearch webservice with all the manifestations in 
 a work collection.
