@@ -1,0 +1,92 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.getSearchResult = getSearchResult;
+exports.getWorkResult = getWorkResult;
+exports.init = init;
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+var _dbcNodeBasesoapClient = require('dbc-node-basesoap-client');
+
+var BaseSoapClient = _interopRequireWildcard(_dbcNodeBasesoapClient);
+
+var wsdl = null;
+var defaults = {};
+
+/**
+ * Retrieves data from the webservice based on the parameters given
+ *
+ * @param {Object} params Parameters for the request
+ * @return {Promise}
+ */
+
+function sendSearchRequest(params) {
+  var opensearch = BaseSoapClient.client(wsdl, defaults, '');
+  return opensearch.request('searchOperation', params, null, true);
+}
+
+/**
+ * Constructs the object of parameters for search result request.
+ *
+ * @param {Object} value Object with parameters for getting a search result
+ * @return {Promise}
+ */
+
+function getSearchResult(values) {
+  var params = {
+    query: values.query,
+    start: values.start,
+    stepValue: values.stepValue,
+    sort: values.sort,
+    objectFormat: 'briefDisplay'
+  };
+  return sendSearchRequest(params);
+}
+
+/**
+ * Constructs the object of parameters for work request.
+ *
+ * @param {Object} value Object with parameters for getting a work
+ * @return {Promise}
+ */
+
+function getWorkResult(values) {
+  var params = {
+    query: values.query,
+    start: 1,
+    stepValue: 1,
+    allObjects: true,
+    objectFormat: ['dkabm', 'briefDisplay']
+  };
+  return sendSearchRequest(params);
+}
+
+var METHODS = {
+  getSearchResult: getSearchResult,
+  getWorkResult: getWorkResult
+};
+
+/**
+ * Setting the necessary paramerters for the client to be usable.
+ * The wsdl is only set if wsdl is null to allow setting it through
+ * environment variables.
+ *
+ * @param {Object} config Config object with the necessary parameters to use
+ * the webservice
+ */
+exports.METHODS = METHODS;
+
+function init(config) {
+  if (!wsdl) {
+    wsdl = config.wsdl;
+  }
+  defaults = {
+    agency: config.agency,
+    profile: config.profile
+  };
+
+  return METHODS;
+}
