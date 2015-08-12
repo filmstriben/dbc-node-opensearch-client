@@ -69,6 +69,7 @@ var METHODS = {
   getWorkResult: getWorkResult
 };
 
+exports.METHODS = METHODS;
 /**
  * Setting the necessary paramerters for the client to be usable.
  * The wsdl is only set if wsdl is null to allow setting it through
@@ -77,7 +78,6 @@ var METHODS = {
  * @param {Object} config Config object with the necessary parameters to use
  * the webservice
  */
-exports.METHODS = METHODS;
 
 function init(config) {
   if (!wsdl) {
