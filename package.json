@@ -18,10 +18,10 @@
     "url": "https://github.com/DBCDK/dbc-node-opensearch-client"
   },
   "keywords": [
-    "dbc"
+    "dbc", "opensearch"
   ],
-  "author": "DBC A/S",
-  "license": "ISC",
+  "author": "dbcdk",
+  "license": "GNU GPL v3",
   "bugs": {
     "url": "https://github.com/DBCDK/dbc-node-opensearch-client/issues"
   },
