@@ -36,6 +36,6 @@
     "mocha-jenkins-reporter": "^0.1.9"
   },
   "dependencies": {
-    "dbc-node-basesoap-client": "git+https://github.com/DBCDK/dbc-node-basesoap-client#develop"
+    "dbc-node-basesoap-client": "git+https://github.com/DBCDK/dbc-node-basesoap-client#stable_dist"
   }
 }
