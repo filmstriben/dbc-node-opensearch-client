@@ -41,7 +41,8 @@ function getSearchResult(values) {
     start: values.start,
     stepValue: values.stepValue,
     sort: values.sort,
-    objectFormat: 'briefDisplay'
+    objectFormat: 'briefDisplay',
+    facets: values.facets || {}
   };
   return sendSearchRequest(params);
 }
