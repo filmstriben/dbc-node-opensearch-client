@@ -25,7 +25,7 @@ var defaults = {};
 
 function sendSearchRequest(params) {
   var opensearch = BaseSoapClient.client(wsdl, defaults, '');
-  return opensearch.request('searchOperation', params, null, true);
+  return opensearch.request('search', params, null, true);
 }
 
 /**

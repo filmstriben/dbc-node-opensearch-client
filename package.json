@@ -4,13 +4,12 @@
   "description": "Client for DBC webservice OpenSearch",
   "main": "index.js",
   "scripts": {
+    "test": "mocha --compilers js:babel/register src/__tests__ -R mocha-jenkins-reporter",
+    "test:watch": "mocha --compilers js:babel/register src/__tests__ -w",
     "build": "npm run cleardest && babel ./src -d dist",
     "cleardest": "rm -rf ./dist",
     "lint": "eslint ./src",
     "lint:checkstyle": "eslint ./src  -o report.xml -f checkstyle",
-    "reinstall": "rm -r node_modules && npm install",
-    "test": "mocha --compilers js:babel/register src/__tests__",
-    "test:junit": "mocha --compilers js:babel/register src/__tests__ -R mocha-jenkins-reporter",
     "watch": "npm run cleardest && babel ./src --watch -d dist"
   },
   "repository": {

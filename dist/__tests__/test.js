@@ -10,19 +10,17 @@ var OpenSearch = _interopRequireWildcard(_clientJs);
 
 describe('Test Open Search List Display', function () {
   it('Assert list display', function (done) {
-    var timeout = 10000;
-    this.timeout(timeout);
-    setTimeout(done, timeout);
-
+    this.timeout(15000);
+    setTimeout(done, 15000);
     var config = {
-      wsdl: 'http://opensearch.addi.dk/3.2/opensearch.wsdl',
+      wsdl: 'http://ml-p01.dbc.dk/opensearch/tags/4.1.1/?wsdl',
       agency: '150013',
       profile: 'opac'
     };
 
     OpenSearch.init(config);
     var result = OpenSearch.getSearchResult({
-      query: 'harry',
+      query: '"harry potter"',
       start: '1',
       stepValue: '10',
       sort: 'rank_frequency'
@@ -30,7 +28,7 @@ describe('Test Open Search List Display', function () {
 
     result.then(function (searchResult) {
       _chai.assert.equal(searchResult.result.collectionCount, '10', 'collectionCount is 10');
-      // assert.equal(searchResult.result.sortUsed, 'rank_main_title', 'sort used is rank_main_title');
+      _chai.assert.equal(searchResult.result.sortUsed, 'rank_main_title', 'sort used is rank_main_title');
       _chai.assert.equal(searchResult.result.more, 'true', 'there is more');
       done();
     });
@@ -39,12 +37,10 @@ describe('Test Open Search List Display', function () {
 
 describe('Test Open Search Work Display', function () {
   it('Assert work display', function (done) {
-    var timeout = 10000;
-    this.timeout(timeout);
-    setTimeout(done, timeout);
-
+    this.timeout(10000);
+    setTimeout(done, 10000);
     var config = {
-      wsdl: 'http://opensearch.addi.dk/3.2/opensearch.wsdl',
+      wsdl: 'http://ml-p01.dbc.dk/opensearch/tags/4.1.1/?wsdl',
       agency: '150013',
       profile: 'opac'
     };
