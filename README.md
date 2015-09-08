@@ -1,8 +1,5 @@
 # dbc-node-opensearch-client
 
-[![David](https://img.shields.io/david/DBCDK/dbc-node-opensearch-client.svg?style=flat-square)](https://david-dm.org/DBCDK/dbc-node-opensearch-client#info=dependencies)
-[![David](https://img.shields.io/david/dev/DBCDK/dbc-node-opensearch-client.svg?style=flat-square)](https://david-dm.org/DBCDK/dbc-node-opensearch-client#info=devDependencies)
-
 Node client for the DBC OpenSearch webservice https://opensource.dbc.dk/services/open-search-web-service.
 Implements the searchOperation of the webservice for retrieving either a search result list or a work.
 
@@ -49,9 +46,10 @@ The method returns the methods available through this client.
 Example
 ```
 config = {
-  wsdl: 'http://opensearch.addi.dk/3.2/opensearch.wsdl',
+  wsdl: 'http://opensearch.addi.dk/4.0.1/?wsdl',
   agency: '000000',
-  profile: 'test'
+  profile: 'test',
+  cache: standardCache
 };
 
 OpenSearch.init(config);
