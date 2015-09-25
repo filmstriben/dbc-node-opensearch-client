@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel/register src/__tests__ -R mocha-jenkins-reporter",
+    "test:junit": "npm run test",
     "test:watch": "mocha --compilers js:babel/register src/__tests__ -w",
     "build": "npm run cleardest && babel ./src -d dist",
     "cleardest": "rm -rf ./dist",
