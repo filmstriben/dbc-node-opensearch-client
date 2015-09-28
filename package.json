@@ -37,6 +37,6 @@
     "mocha-jenkins-reporter": "^0.1.9"
   },
   "dependencies": {
-    "dbc-node-basesoap-client": "^1.0.0"
+    "dbc-node-basesoap-client": "^1.0.1"
   }
 }
