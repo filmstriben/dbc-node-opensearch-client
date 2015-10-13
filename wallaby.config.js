@@ -4,7 +4,7 @@ let babel = require('babel');
 module.exports = function() {
   return {
     files: [
-      {pattern: 'src/*.js'},
+      {pattern: 'src/*.js'}
     ],
 
     tests: [

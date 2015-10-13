@@ -15,6 +15,7 @@ var BaseSoapClient = _interopRequireWildcard(_dbcNodeBasesoapClient);
 
 var wsdl = null;
 var defaults = {};
+var Logger = null;
 
 /**
  * Retrieves data from the webservice based on the parameters given
@@ -24,7 +25,7 @@ var defaults = {};
  */
 
 function sendSearchRequest(params) {
-  var opensearch = BaseSoapClient.client(wsdl, defaults, '');
+  var opensearch = BaseSoapClient.client(wsdl, defaults, Logger);
   return opensearch.request('search', params, null, true);
 }
 
@@ -38,8 +39,8 @@ function sendSearchRequest(params) {
 function getSearchResult(values) {
   var params = {
     query: values.query,
-    start: values.start,
     stepValue: values.stepValue,
+    start: values.start,
     sort: values.sort,
     objectFormat: 'briefDisplay',
     facets: values.facets || {}
@@ -88,6 +89,10 @@ function init(config) {
     agency: config.agency,
     profile: config.profile
   };
+
+  if (config.logger && !Logger) {
+    Logger = config.logger;
+  }
 
   return METHODS;
 }
