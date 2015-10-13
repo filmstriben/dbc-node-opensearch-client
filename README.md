@@ -1,5 +1,8 @@
 # dbc-node-opensearch-client
 
+[![David](https://img.shields.io/david/DBCDK/dbc-node-opensearch-client.svg?style=flat-square)](https://david-dm.org/DBCDK/dbc-node-opensearch-client#info=dependencies)
+[![David](https://img.shields.io/david/dev/DBCDK/dbc-node-opensearch-client.svg?style=flat-square)](https://david-dm.org/DBCDK/dbc-node-opensearch-client#info=devDependencies)
+
 Node client for the DBC OpenSearch webservice https://opensource.dbc.dk/services/open-search-web-service.
 Implements the searchOperation of the webservice for retrieving either a search result list or a work.
 
