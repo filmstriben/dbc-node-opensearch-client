@@ -4,6 +4,7 @@ import * as BaseSoapClient from 'dbc-node-basesoap-client';
 
 let wsdl = null;
 let defaults = {};
+let Logger = null;
 
 /**
  * Retrieves data from the webservice based on the parameters given
@@ -13,7 +14,7 @@ let defaults = {};
  */
 
 function sendSearchRequest(params) {
-  let opensearch = BaseSoapClient.client(wsdl, defaults, '');
+  let opensearch = BaseSoapClient.client(wsdl, defaults, Logger);
   return opensearch.request('search', params, null, true);
 }
 
@@ -26,8 +27,8 @@ function sendSearchRequest(params) {
 export function getSearchResult(values) {
   const params = {
     query: values.query,
-    start: values.start,
     stepValue: values.stepValue,
+    start: values.start,
     sort: values.sort,
     objectFormat: 'briefDisplay',
     facets: values.facets || {}
@@ -73,6 +74,10 @@ export function init(config) {
     agency: config.agency,
     profile: config.profile
   };
+
+  if (config.logger && !Logger) {
+    Logger = config.logger;
+  }
 
   return METHODS;
 }
