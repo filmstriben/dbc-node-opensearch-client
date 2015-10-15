@@ -48,7 +48,8 @@ export function getWorkResult(values) {
     start: 1,
     stepValue: 1,
     allObjects: true,
-    objectFormat: ['dkabm', 'briefDisplay']
+    objectFormat: ['dkabm', 'briefDisplay'],
+    relationData: 'full'
   };
   return sendSearchRequest(params);
 }
