@@ -29,8 +29,7 @@ export function getSearchResult(values) {
     query: values.query,
     stepValue: values.stepValue,
     start: values.start,
-    sort: values.sort,
-    objectFormat: 'briefDisplay',
+    objectFormat: 'dkabm',
     facets: values.facets || {}
   };
   return sendSearchRequest(params);
@@ -48,7 +47,7 @@ export function getWorkResult(values) {
     start: 1,
     stepValue: 1,
     allObjects: true,
-    objectFormat: ['dkabm', 'briefDisplay'],
+    objectFormat: 'dkabm',
     relationData: 'full'
   };
   return sendSearchRequest(params);
