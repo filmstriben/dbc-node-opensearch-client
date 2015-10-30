@@ -39,7 +39,7 @@ function sendSearchRequest(params) {
 function getSearchResult(values) {
   var params = {
     query: values.query,
-    stepValue: values.stepValue,
+    stepValue: 9999,
     start: values.start,
     objectFormat: 'dkabm',
     facets: values.facets || {}
@@ -58,7 +58,7 @@ function getWorkResult(values) {
   var params = {
     query: values.query,
     start: 1,
-    stepValue: 1,
+    stepValue: 9999,
     allObjects: true,
     objectFormat: 'dkabm',
     relationData: 'full'
